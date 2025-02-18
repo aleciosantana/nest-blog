@@ -1,0 +1,21 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: nest-blog-db
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+    volumes:
+      - nest-blog-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - nest-blog-net
+
+networks:
+  nest-blog-net:
+    driver: bridge
+
+volumes:
+  nest-blog-data:
+    driver: local
