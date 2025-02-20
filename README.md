@@ -45,6 +45,14 @@ $ pnpm run start:dev
 $ pnpm run start:prod
 ```
 
+## Docker
+
+```bash
+$ docker-compose up -d --build
+```
+
+The project uses PostgreSQL as the database, configured via Docker. Prisma migrations are applied automatically when starting the container.
+
 ## Run tests
 
 ```bash

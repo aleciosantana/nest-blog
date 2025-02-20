@@ -1,0 +1,33 @@
+services:
+  app:
+    build: .
+    container_name: nest-blog-app
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: "postgresql://postgres:example@db:5432/postgres?schema=public"
+    depends_on:
+      - db
+    networks:
+      - nest-blog
+  db:
+    image: postgres:latest
+    container_name: db
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+    volumes:
+      - nest-blog:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - nest-blog
+
+networks:
+  nest-blog:
+    driver: bridge
+
+volumes:
+  nest-blog:
+    driver: local
